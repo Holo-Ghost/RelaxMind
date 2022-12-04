@@ -1,0 +1,1735 @@
+//Kayleigh Reynolds
+//This is a section of the larger Medical Reference program, and this section will
+//allow the user to choose a song to listen to as a form of relaxation
+
+#include <iostream>
+#include <windows.h>
+#include <conio.h>
+#include <iomanip>
+#include <limits>
+#include<fstream>
+#include<sstream>
+#include<string>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+
+void musicIntro ();
+int getMainMMchoice ();
+int errorCheckInt(int);
+
+void gameOSTmenu ();        //keeping game OST functions organized for myself and group members
+void elderScrollsMusic();
+void silentHillMusic();
+void hollowKnightMusic();
+
+void vocalsMenu();
+void harunoMusic();
+void whooMusic();
+void kanaMusic();
+
+void instruMenu();
+void chonMusic();
+void hyakkeiMusic();
+void saulMusic();
+
+void randomSong();
+
+int main ()                                  //will be merged together with the other parts of the program, won't be main forever
+{
+    int mainMMchoice = 0;                    //creating a variable for the music choice main menu
+
+    do
+    {
+        musicIntro();                         //calling musicIntro function
+        mainMMchoice = getMainMMchoice();
+
+        switch (mainMMchoice)
+        {
+            case 1: gameOSTmenu();          //calling gameOSTmenu function
+                break;
+
+            case 2: vocalsMenu();           //calling vocalsMenu function
+                break;
+
+            case 3: instruMenu();           //calling instruMenu function
+                break;
+
+            case 4: randomSong();           //calling randomSong function
+                break;
+
+            case 5: cout << setw(130) << "Now going back to the main menu." << endl << endl << endl;                                        //if the user decides to exit the music menu
+                    cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+                    break;
+
+            default: cout << setw(130) << "That is not a valid option. Please choose 1, 2," << endl;                                        //if the user does not press a number from the menu
+                     cout << setw(120) << "3, or 4 from the menu." << endl << endl << endl;
+                     break;
+        }
+
+    }
+    while (mainMMchoice != 5);
+
+    return 0;
+}
+
+
+//*********************************************
+//             musicIntro
+// Task: This function will introduce the user to the
+// Relax Your Mind area of the program. It will offer
+// user a bit of advice and explain a bit about how the
+// program should be operated
+// Data In: None
+// Data Out: None
+//*********************************************
+void musicIntro()
+{
+    cout << setw(142) << "*.*.Feeling stressed and need a moment to yourself?.*.*" << endl << endl;
+    cout << setw(123) << "Let's try some music." << endl << endl;
+    cout << setw(127) << "Press any key to continue..."  << endl << endl << endl;
+    getch();
+
+    cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+    cout << setw(129) << "When you listen to these songs," << endl;
+    cout << setw(138) << "feel free to close your eyes, put your head down," << endl;
+    cout << setw(127) << "and take slow, deep breaths." << endl;
+    cout << setw(132) << "Let the music take you somewhere else" << endl;
+    cout << setw(123) << "for a little while." << endl << endl;
+
+    cout << setw(130) << "Let's review our music selection." << endl << endl << endl;
+    cout << setw(127) << "Press any key to continue..."  << endl << endl << endl;
+    cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+    getch();
+}
+
+
+//*********************************************
+//            getMainMMchoice
+// Task: This function will allow the user to make an integer choice
+// out of the main menu for the Music Section of the program
+// Data In: None
+// Data Out: An integer option from the menu
+//*********************************************
+int getMainMMchoice ()
+{
+    int MMchoice = 0;
+
+    cout << setw(128) << "Pick the style you like most:" << endl << endl;       //the main starting menu for the music part of the program
+    cout << setw(122) << "1. Video Game OST" << endl;
+    cout << setw(125) << "2. Songs with Vocals" << endl;
+    cout << setw(121) << "3. Instrumentals" << endl;
+    cout << setw(119) << "4. Random Song" << endl;
+    cout << setw(115) << "5. Go Back" << endl;
+    cin >> MMchoice;
+    MMchoice = errorCheckInt(MMchoice);                                         //sending input to the error checking function
+
+    return MMchoice;                                                            //returning the choice value back to main function
+}
+
+
+//*********************************************
+//            gameOSTmenu
+// Task: This function will allow the user to make an integer choice
+// out of a selection of game OSTs they would like to listen to
+// Data In: None
+// Data Out: None
+//*********************************************
+void gameOSTmenu()
+{
+    int gameChoice = 0;
+
+    cout << setw(127) << "You picked Video Game OST" << endl << endl << endl;
+    cout << setw(134) << "Which OST would you like to listen to?" << endl << endl;
+    cout << setw(121) << "1. Elder Scrolls" << endl;
+    cout << setw(119) << "2. Silent Hill" << endl;
+    cout << setw(121) << "3. Hollow Knight" << endl;
+    cin >> gameChoice;
+    gameChoice = errorCheckInt(gameChoice);                                 //sending the choice to the error checking function
+
+    switch (gameChoice)
+    {
+        case 1: elderScrollsMusic();
+            break;
+
+        case 2: silentHillMusic();
+            break;
+
+        case 3: hollowKnightMusic();
+            break;
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+                 break;
+
+    }
+}
+
+//*********************************************
+//            elderScrollsMusic
+// Task: This function will allow a user to make a selection
+// from a menu of Elder Scrolls music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void elderScrollsMusic()
+{
+    int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(125) << "The Elder Scrolls OST" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(115) << "1. Secunda" << endl;
+    cout << setw(125) << "2. Minstrel's Lament" << endl;
+    cout << setw(117) << "3. Frostfall" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream gamePic("JSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("JSSecunda", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream gamePic("JSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("JSMinstrel", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream gamePic("JSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("JSFrostfall", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+//*********************************************
+//            silentHillMusic
+// Task: This function will allow a user to make a selection
+// from a menu of Silent Hill music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void silentHillMusic()
+{
+    int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(122) << "Silent Hill OST" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(127) << "1. Pianissimo Epilogue" << endl;
+    cout << setw(122) << "2. Heaven's Night" << endl;
+    cout << setw(123) << "3. Restless Dreams" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream gamePic("SHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SHPianissimoEpilogue", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream gamePic("SHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SHHeavensNight", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream gamePic("SHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SHRestlessDreams", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+//*********************************************
+//            hollowKnightMusic
+// Task: This function will allow a user to make a selection
+// from a menu of Silent Hill music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void hollowKnightMusic()
+{
+   int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(122) << "Hollow Knight OST" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(117) << "1. Dirtmouth" << endl;
+    cout << setw(117) << "2. Greenpath" << endl;
+    cout << setw(121) << "3. Hollow Knight" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream gamePic("HKascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HKDirtmouth", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream gamePic("HKascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HKGreenpath", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+
+        case 3:
+            {
+                fstream gamePic("HKascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(gamePic)
+                {
+                    ostringstream ss;
+                    ss << gamePic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HKHollowKnight", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+
+//*********************************************
+//            vocalsMenu
+// Task: This function will allow the user to make an integer choice
+// out of a selection of vocal songs they would like to listen to
+// Data In: None
+// Data Out: None
+//*********************************************
+void vocalsMenu()
+{
+    int vocChoice = 0;
+
+    cout << setw(127) << "You picked Songs With Vocals" << endl << endl << endl;
+    cout << setw(134) << "Which artist would you like to listen to?" << endl << endl;
+    cout << setw(114) << "1. Haruno" << endl;
+    cout << setw(112) << "2. Whoo" << endl;
+    cout << setw(121) << "3. Kana Wakareno" << endl;
+    cin >> vocChoice;
+    vocChoice = errorCheckInt(vocChoice);
+
+    switch (vocChoice)
+    {
+        case 1: harunoMusic();
+            break;
+
+        case 2: whooMusic();
+            break;
+
+        case 3: kanaMusic();
+            break;
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+                 break;
+
+    }
+}
+
+//*********************************************
+//            harunoMusic
+// Task: This function will allow a user to make a selection
+// from a menu of haruno music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void harunoMusic()
+{
+     int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(118) << "Haruno" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(113) << "1. MIST" << endl;
+    cout << setw(112) << "2. UFO" << endl;
+    cout << setw(119) << "3. No Make Up" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream vocPic("HARUascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HARMIST", NULL, SND_SYNC);                                //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream vocPic("HARUascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HARUFO", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream vocPic("HARUascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HARNoMakeUp", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+//*********************************************
+//            whooMusic
+// Task: This function will allow a user to make a selection
+// from a menu of whoo music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void whooMusic()
+{
+    int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(117) << "Whoo" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(127) << "1. Poetry of Departure" << endl;
+    cout << setw(128) << "2. To Be With You Again" << endl;
+    cout << setw(112) << "3. Exit" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream vocPic("WHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("WHPoetryOfDeparture", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream vocPic("WHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("WHToBeWithYouAgain", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream vocPic("WHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("WHExit", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+//*********************************************
+//            kanaMusic
+// Task: This function will allow a user to make a selection
+// from a menu of Kana Wakareno music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void kanaMusic()
+{
+   int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(122) << "Kana Wakareno" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(122) << "1. forget me not" << endl;
+    cout << setw(116) << "2. mermaid" << endl;
+    cout << setw(133) << "3. lost summer day dreaming" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream vocPic("KWascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("KWforgetMeNot", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream vocPic("KWascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("KWmermaid", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream vocPic("KWascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("KWLostSummer", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+
+//*********************************************
+//            instruMenu
+// Task: This function will allow the user to make an integer choice
+// out of a selection of vocal songs they would like to listen to
+// Data In: None
+// Data Out: None
+//*********************************************
+void instruMenu()
+{
+    int insChoice = 0;
+
+    cout << setw(127) << "You picked Instrumentals" << endl << endl << endl;
+    cout << setw(134) << "Which artist would you like to listen to?" << endl << endl;
+    cout << setw(112) << "1. Chon" << endl;
+    cout << setw(115) << "2. Hyakkei" << endl;
+    cout << setw(119) << "3. Saul Stokes" << endl;
+    cin >> insChoice;
+    insChoice = errorCheckInt(insChoice);
+
+    switch (insChoice)
+    {
+        case 1: chonMusic();
+            break;
+
+        case 2: hyakkeiMusic();
+            break;
+
+        case 3: saulMusic();
+            break;
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+                 break;
+
+    }
+}
+
+//*********************************************
+//            chonMusic
+// Task: This function will allow a user to make a selection
+// from a menu of Chon music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void chonMusic()
+{
+    int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(115) << "Chon" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(117) << "1. Continue?" << endl;
+    cout << setw(116) << "2. Rosewood" << endl;
+    cout << setw(118) << "3. Sleepy Tea" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream insPic("CHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("CHContinue", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream insPic("CHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("CHRosewood", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream insPic("CHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("CHSleepyTea", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+//*********************************************
+//            hyakkeiMusic
+// Task: This function will allow a user to make a selection
+// from a menu of Hyakkei music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void hyakkeiMusic()
+{
+    int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(118) << "Hyakkei" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(118) << "1. Town Light" << endl;
+    cout << setw(116) << "2. My Waltz" << endl;
+    cout << setw(113) << "3. Birds" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream insPic("HYascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HYTownLight", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream insPic("HYascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HYMyWaltz", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream insPic("HYascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HYBirds", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+//*********************************************
+//            saulMusic
+// Task: This function will allow a user to make a selection
+// from a menu of Saul Stokes music, and will then take the user
+// to the appropriate "song page"
+// Data In: None
+// Data Out: None
+//*********************************************
+void saulMusic()
+{
+    int ch = 0;
+
+    cout << setw(122) << "You have picked" << endl;
+    cout << setw(120) << "Saul Stokes" << endl << endl;
+    cout << setw(125) << "Please choose a song:" << endl << endl;
+    cout << setw(137) << "1. My Memory I Hope You Remember" << endl;
+    cout << setw(137) << "2. Stories Reflect in Those Eyes" << endl;
+    cout << setw(129) << "3. Blink and You'll Miss" << endl;
+    cin >> ch;
+
+    switch(ch)
+    {
+        case 1:
+            {
+                fstream insPic("SSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SSMyMemory", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream insPic("SSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SSStories", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream insPic("SSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(insPic)
+                {
+                    ostringstream ss;
+                    ss << insPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SSBlink", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        default: cout << setw(140) << "That is not a valid option. Please choose 1, 2," << endl;
+                 cout << setw(124) << "or 3 from the menu." << endl;
+            break;
+    }
+}
+
+
+//*********************************************
+//            randomSong
+// Task: This function will give the user a random song
+// generated from the preset list of 27 songs the program
+// already has, along with the correct picture associated
+// with it
+// Data In: None
+// Data Out: None
+//*********************************************
+void randomSong()
+{
+    int randNum = 0;            //initializing a variable to stand in for the random song the user will receive
+
+     srand(time(0));
+
+     randNum = 1+(rand()%27);
+
+     switch (randNum)
+     {
+
+        case 1:
+            {
+                fstream pic("JSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("JSSecunda", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 2:
+            {
+                fstream pic("JSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("JSMinstrel", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 3:
+            {
+                fstream pic("JSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("JSFrostfall", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 4:
+            {
+                fstream pic("SHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SHPianissimoEpilogue", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 5:
+            {
+                fstream pic("SHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SHHeavensNight", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 6:
+            {
+                fstream pic("SHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SHRestlessDreams", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 7:
+            {
+                fstream pic("HKascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HKDirtmouth", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 8:
+              {
+                fstream pic("HKascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HKGreenpath", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 9:
+            {
+                fstream pic("HKascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HKHollowKnight", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 10:
+            {
+                fstream pic("HARUascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HARMIST", NULL, SND_SYNC);                                //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 11:
+            {
+                fstream pic("HARUascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HARUFO", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 12:
+            {
+                fstream pic("HARUascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HARNoMakeUp", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 13:
+            {
+                fstream pic("WHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("WHPoetryOfDeparture", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 14:
+            {
+                fstream pic("WHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("WHToBeWithYouAgain", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 15:
+            {
+                fstream pic("WHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("WHExit", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 16:
+            {
+                fstream pic("KWascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("KWforgetMeNot", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 17:
+            {
+                fstream vocPic("KWascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(vocPic)
+                {
+                    ostringstream ss;
+                    ss << vocPic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("KWmermaid", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 18:
+            {
+                fstream pic("KWascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("KWLostSummer", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 19:
+            {
+                fstream pic("CHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("CHContinue", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 20:
+            {
+                fstream pic("CHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("CHRosewood", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 21:
+            {
+                fstream pic("CHascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("CHSleepyTea", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+
+        case 22:
+            {
+                fstream pic("SSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SSMyMemory", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 23:
+            {
+                fstream pic("SSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SSStories", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 24:
+            {
+                fstream pic("SSascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("SSBlink", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 25:
+            {
+                fstream pic("HYascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HYTownLight", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 26:
+            {
+                fstream pic("HYascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HYMyWaltz", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+
+        case 27:
+            {
+                fstream pic("HYascii.txt");                  //creates an internal name for the ASCII text file I am using
+                string text;
+                if(pic)
+                {
+                    ostringstream ss;
+                    ss << pic.rdbuf();
+                    text = ss.str();
+                }
+                cout << text;
+                cout << endl << endl << endl;
+
+                PlaySound("HYBirds", NULL, SND_SYNC);    //plays the music until the clip is finished
+
+                cout << setw(130) << "Press any key when done to exit..."  << endl << endl << endl;
+                getch();
+                cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+
+            break;
+            }
+     }
+}
+
+
+//*********************************************
+//            errorCheckInt
+// Task: This function will check the user's input during menu
+// selection to make sure that the selection is valid
+// Data In: A choice the user made from the menu
+// Data Out: An integer option
+//*********************************************
+int errorCheckInt (int choice)
+{
+     do
+    {
+        while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5)
+            {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                cout << setw(155) << "Sorry, that is not correct input. Please enter a number from the previous menu." << endl;
+                cin >> choice;
+                cout << endl;
+            }
+        cout << setw(150) << ".*.*.************************************************************.*.*." << endl << endl << endl;
+    }
+    while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5);
+    return choice;
+}
